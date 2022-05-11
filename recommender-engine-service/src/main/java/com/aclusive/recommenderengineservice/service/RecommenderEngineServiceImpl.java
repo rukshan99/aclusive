@@ -29,6 +29,6 @@ public class RecommenderEngineServiceImpl implements RecommenderEngineService {
 
 	@Override
 	public Recommendation getRecommendationById(Long recommendationId) {
-		return recommendationRepository.getOne(recommendationId);
+		return recommendationRepository.getById(recommendationId);
 	}
 }
