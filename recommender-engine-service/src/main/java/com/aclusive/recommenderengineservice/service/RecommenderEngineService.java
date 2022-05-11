@@ -3,7 +3,7 @@ package com.aclusive.recommenderengineservice.service;
 import com.aclusive.recommenderengineservice.model.Recommendation;
 import java.util.List;
 
-public interface RecommendationEngineService {
+public interface RecommenderEngineService {
 	Recommendation getRecommendationById(Long recommendationId);
     Recommendation saveRecommendation(Recommendation recommendation);
     List<Recommendation> getAllRecommendationByProductName(String productName);

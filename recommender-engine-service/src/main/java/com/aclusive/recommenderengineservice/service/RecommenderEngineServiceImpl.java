@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RecommendationEngineServiceImpl implements RecommendationEngineService {
+public class RecommenderEngineServiceImpl implements RecommenderEngineService {
 
     @Autowired
     private RecommendationRepository recommendationRepository;
