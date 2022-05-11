@@ -6,7 +6,7 @@ import com.aclusive.recommenderengineservice.http.header.HeaderGenerator;
 import com.aclusive.recommenderengineservice.model.Product;
 import com.aclusive.recommenderengineservice.model.Recommendation;
 import com.aclusive.recommenderengineservice.model.User;
-import com.aclusive.recommenderengineservice.service.recommenderengineservice;
+import com.aclusive.recommenderengineservice.service.RecommenderEngineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 public class RecommendationEngineController {
 
     @Autowired
-    private RecommendationService recommendationService;
+    private RecommenderEngineService recommendationEngineService;
 
     @Autowired
     private ProductClient productClient;
@@ -31,7 +31,7 @@ public class RecommendationEngineController {
 
     @GetMapping(value = "/recommendations")
     private ResponseEntity<List<Recommendation>> getAllRating(@RequestParam("name") String productName){
-        List<Recommendation> recommendations = recommendationService.getAllRecommendationByProductName(productName);
+        List<Recommendation> recommendations = recommendationEngineService.getAllRecommendationByProductName(productName);
         if(!recommendations.isEmpty()) {
         	return new ResponseEntity<List<Recommendation>>(
         		recommendations,
@@ -59,7 +59,7 @@ public class RecommendationEngineController {
 				recommendation.setProduct(product);
 				recommendation.setUser(user);
 				recommendation.setRating(rating);
-				recommendationService.saveRecommendation(recommendation);
+				recommendationEngineService.saveRecommendation(recommendation);
 				return new ResponseEntity<Recommendation>(
 						recommendation,
 						headerGenerator.getHeadersForSuccessPostMethod(request, recommendation.getId()),
@@ -78,10 +78,10 @@ public class RecommendationEngineController {
 
     @DeleteMapping(value = "/recommendations/{id}")
     private ResponseEntity<Void> deleteRecommendations(@PathVariable("id") Long id){
-    	Recommendation recommendation = recommendationService.getRecommendationById(id);
+    	Recommendation recommendation = recommendationEngineService.getRecommendationById(id);
     	if(recommendation != null) {
     		try {
-    			recommendationService.deleteRecommendation(id);
+    			recommendationEngineService.deleteRecommendation(id);
     			return new ResponseEntity<Void>(
     					headerGenerator.getHeadersForSuccessGetMethod(),
     					HttpStatus.OK);
