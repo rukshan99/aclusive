@@ -74,6 +74,11 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-apache-client4</artifactId>
+			<version>1.19.4</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.specto/hoverfly-java -->
         <dependency>
             <groupId>io.specto</groupId>
