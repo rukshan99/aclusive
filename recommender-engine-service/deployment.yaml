@@ -1,0 +1,150 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    autopilot.gke.io/resource-adjustment: '{"input":{"containers":[{"name":"recommender-engine-service-1"}]},"output":{"containers":[{"limits":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"recommender-engine-service-1"}]},"modified":true}'
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2022-05-13T13:33:25Z"
+  generation: 3
+  labels:
+    app: aclusive
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:progressDeadlineSeconds: {}
+        f:replicas: {}
+        f:revisionHistoryLimit: {}
+        f:selector: {}
+        f:strategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+          f:spec:
+            f:containers:
+              k:{"name":"recommender-engine-service-1"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: GoogleCloudConsole
+    operation: Update
+    time: "2022-05-13T13:33:25Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: {}
+      f:status:
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:observedGeneration: {}
+        f:replicas: {}
+        f:unavailableReplicas: {}
+        f:updatedReplicas: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2022-05-14T06:08:37Z"
+  name: aclusive
+  namespace: default
+  resourceVersion: "1341372"
+  uid: c0500af3-9fa5-4014-ab3d-d8ae85af0759
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 5
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: aclusive
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: aclusive
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/modern-binder-350008/aclusive-repo/recommender-engine-service:latest
+        imagePullPolicy: Always
+        name: recommender-engine-service-1
+        resources:
+          limits:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
+        securityContext:
+          capabilities:
+            drop:
+            - NET_RAW
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2022-05-13T13:33:25Z"
+    lastUpdateTime: "2022-05-13T13:35:36Z"
+    message: ReplicaSet "aclusive-65f77b6c47" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2022-05-14T04:05:02Z"
+    lastUpdateTime: "2022-05-14T04:05:02Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  observedGeneration: 3
+  replicas: 5
+  unavailableReplicas: 5
+  updatedReplicas: 5
