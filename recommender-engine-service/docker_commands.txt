@@ -1,0 +1,11 @@
+// Building the image
+docker build --tag=recommender-engine-service:latest .
+
+// Running the image in a container
+docker run -p8822:8812 recommender-engine-service:latest
+
+// Re-tagging to use dockerhub username (can avoid this step if the image was built with the dockerhub username at the beginning)
+docker tag recommender-engine-service rukshan99/recommender-engine-service
+
+// Push to dockerhub
+docker push rukshan99/recommender-engine-service
