@@ -1,0 +1,4 @@
+FROM amazoncorretto:11-alpine-jdk
+LABEL maintainer="Rukshan99  Jayasekara R.T.R  IT19129204 2022_REG_08"
+COPY target/eureka-server-0.0.1-SNAPSHOT.jar eureka-server-0.0.1.jar
+ENTRYPOINT ["java","-jar","/eureka-server-0.0.1.jar"]
