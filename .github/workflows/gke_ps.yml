@@ -25,6 +25,10 @@ env:
   DEPLOYMENT_NAME: aclusive-product-service # TODO: update to deployment name
   REPOSITORY: product-service # TODO: update to Artifact Registry docker repository
   IMAGE: product-service
+  
+defaults:
+  run:
+    working-directory: product-catlog-service-engine
 
 jobs:
   setup-build-publish-deploy:
