@@ -1,11 +1,233 @@
 apiVersion: v1
-kind: Service
+kind: Pod
 metadata:
-  name: product-service
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+  creationTimestamp: "2022-05-17T07:43:04Z"
+  generateName: aclusive-product-service-74796cd549-
+  labels:
+    app: aclusive-product-service
+    pod-template-hash: 74796cd549
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"38511f51-a72a-453f-bfa6-7addde4cc969"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"product-service"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources:
+              .: {}
+              f:limits:
+                .: {}
+                f:cpu: {}
+                f:ephemeral-storage: {}
+                f:memory: {}
+              f:requests:
+                .: {}
+                f:cpu: {}
+                f:ephemeral-storage: {}
+                f:memory: {}
+            f:securityContext:
+              .: {}
+              f:capabilities:
+                .: {}
+                f:drop: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext:
+          .: {}
+          f:seccompProfile:
+            .: {}
+            f:type: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2022-05-17T07:43:04Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.116.128.133"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2022-05-17T10:55:56Z"
+  name: aclusive-product-service-74796cd549-k5ltc
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: aclusive-product-service-74796cd549
+    uid: 38511f51-a72a-453f-bfa6-7addde4cc969
+  resourceVersion: "107268"
+  uid: 0a7d858e-1db4-4b3a-a494-847307854c09
 spec:
-  selector:
-    app: product-service
-  ports:
-    - protocol: TCP
-      port: 8810
-  type: LoadBalancer
+  containers:
+  - image: sahan98/product-service
+    imagePullPolicy: Always
+    name: product-service
+    resources:
+      limits:
+        cpu: 500m
+        ephemeral-storage: 1Gi
+        memory: 2Gi
+      requests:
+        cpu: 500m
+        ephemeral-storage: 1Gi
+        memory: 2Gi
+    securityContext:
+      capabilities:
+        drop:
+        - NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-8259j
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: gk3-product-service-default-pool-f44d58ed-vt7z
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: gke.io/optimize-utilization-scheduler
+  securityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-8259j
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2022-05-17T07:43:04Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2022-05-17T10:55:56Z"
+    message: 'containers with unready status: [product-service]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2022-05-17T10:55:56Z"
+    message: 'containers with unready status: [product-service]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2022-05-17T07:43:04Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://9da827b3db23b70a7d24ceca99a12a482803d6531d02129fd0c40f5b92bdfbcb
+    image: docker.io/sahan98/product-service:latest
+    imageID: docker.io/sahan98/product-service@sha256:bb4ca405f5409ad5f7b7830f6122c8a7c90a2516b7c9690afc8c205c61342509
+    lastState:
+      terminated:
+        containerID: containerd://9da827b3db23b70a7d24ceca99a12a482803d6531d02129fd0c40f5b92bdfbcb
+        exitCode: 1
+        finishedAt: "2022-05-17T10:55:56Z"
+        reason: Error
+        startedAt: "2022-05-17T10:54:55Z"
+    name: product-service
+    ready: false
+    restartCount: 35
+    started: false
+    state:
+      waiting:
+        message: back-off 5m0s restarting failed container=product-service pod=aclusive-product-service-74796cd549-k5ltc_default(0a7d858e-1db4-4b3a-a494-847307854c09)
+        reason: CrashLoopBackOff
+  hostIP: 10.160.0.4
+  phase: Running
+  podIP: 10.116.128.133
+  podIPs:
+  - ip: 10.116.128.133
+  qosClass: Guaranteed
+  startTime: "2022-05-17T07:43:04Z"
