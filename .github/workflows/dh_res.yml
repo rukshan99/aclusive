@@ -9,10 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    defaults:
-      run:
-        working-directory: recommender-engine-service
         
     steps:
       -
@@ -34,4 +30,4 @@ jobs:
           context: recommender-engine-service
           file: recommender-engine-service/dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME_RUKSHAN }}/recommender-engine-service:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME_RUKSHAN }}/recommender-engine-service:new
