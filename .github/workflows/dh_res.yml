@@ -31,7 +31,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./dockerfile
+          context: recommender-engine-service
+          file: recommender-engine-service/dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME_RUKSHAN }}/recommender-engine-service:latest
