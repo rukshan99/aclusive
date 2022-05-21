@@ -23,7 +23,7 @@ jobs:
           java-version: 11
       - 
         name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B -Dmaven.test.skip package --file pom.xml
       -
         name: Upload build artifacts       
         uses: actions/upload-artifact@v2      
