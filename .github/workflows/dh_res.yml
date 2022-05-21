@@ -17,6 +17,8 @@ jobs:
       - 
         uses: actions/checkout@v1
       - 
+        run: mkdir -p target
+      - 
         name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -26,7 +28,7 @@ jobs:
         run: mvn -B -Dmaven.test.skip package --file pom.xml
       -
         name: Upload build artifacts       
-        uses: actions/upload-artifact@v2      
+        uses: actions/upload-artifact@v2
         with:        
           name: recommender-engine-service-0.0.1-SNAPSHOT.jar        
           path: target/*.jar
