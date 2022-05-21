@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: recommender-engine-service
         
     steps:
       - 
@@ -31,6 +34,9 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: recommender-engine-service
     
     steps:
       - uses: actions/checkout@v2
