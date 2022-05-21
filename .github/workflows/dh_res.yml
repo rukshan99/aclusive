@@ -56,8 +56,10 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME_RUKSHAN }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN_RUKSHAN }}
       - 
-        name: Download artifact
-        uses: actions/download-artifact@v2
+        name: Download workflow artifact
+        uses: dawidd6/action-download-artifact@v2.19.0
+        with:
+          path: target
 
       - 
         name: Build and push
